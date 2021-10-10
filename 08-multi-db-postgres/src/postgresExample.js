@@ -8,6 +8,7 @@ Instalando o Drive do Postgres no Sequelize
 
 const Sequelize = require('sequelize')
 
+
 const driver = new Sequelize(
     'heroes',
     'kayorenato',
