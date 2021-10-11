@@ -77,6 +77,14 @@ class Postgres extends ICrud {
         const { dataValues } = await this._heroes.create(item)
         return dataValues
     }
+
+    //!parametro opcional que caso não venha nenhum item ele passara vazio
+    read(item = {}) {
+        return this._heroes.findAll({
+            where: item,
+            raw: true //!Traz apenas o valor da listagem (retorna apenas dados importantes)
+        })
+    }
 }
 
 module.exports = Postgres

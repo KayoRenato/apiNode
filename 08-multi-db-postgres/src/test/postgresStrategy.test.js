@@ -39,11 +39,18 @@ describe('Postgres Strategy', function () {
     it('PostgresSQL Cadastrar', async function(){
         const result = await context.create(MOCK_HEROI_CADASTRAR)
         delete result.id //! Removendo a chave id do result 
-
+        
         //? Resultado(result) é igual ao Esperado(true)
         //! O deepEqual compara se dois objetos e seus filhos são iguais
         assert.deepEqual(result, MOCK_HEROI_CADASTRAR)
     })
+    
+    it('listar', async function(){
+        const [result] = await context.read({nome: MOCK_HEROI_CADASTRAR.nome})
+        delete result.id //! Removendo a chave id do result 
+        //!pegar a primeira posição da listar
 
+        assert.deepEqual(result, MOCK_HEROI_CADASTRAR)
+    })
 })
 
