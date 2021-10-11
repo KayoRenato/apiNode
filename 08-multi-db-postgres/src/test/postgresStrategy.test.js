@@ -32,6 +32,7 @@ describe('Postgres Strategy', function () {
     this.timeout(Infinity)
     this.beforeAll( async function () {
         await context.connect()
+        await context.delete()
         await context.create(MOCK_HEROI_ATUALIZAR)
     })
     // this.afterAll( async function(){
@@ -78,6 +79,14 @@ describe('Postgres Strategy', function () {
         const [actHero] = await context.read({id:heroToUpdate.id})
         delete actHero.id
         assert.deepEqual(actHero, expHero) 
+    })
+
+    it('deletar por id', async function(){
+        //! Pegando qualquer valor na base
+        const [item] = await context.read({}) 
+        
+        const result = await context.delete(item.id)
+        assert.deepEqual(result,1)
     })
 })
 
