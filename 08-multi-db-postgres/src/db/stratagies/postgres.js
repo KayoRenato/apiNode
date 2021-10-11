@@ -85,6 +85,10 @@ class Postgres extends ICrud {
             raw: true //!Traz apenas o valor da listagem (retorna apenas dados importantes)
         })
     }
+
+    update(id, item) {
+        return this._heroes.update(item, {where: {id: id}})
+    }
 }
 
 module.exports = Postgres
